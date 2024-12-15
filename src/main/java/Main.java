@@ -1,15 +1,5 @@
 public class Main {
 	
-	public static void testBuildList() {
-		int[] arr = {1,3,4,5,6,7,90};
-		Node<Integer> list; 
-		list = buildList(arr); 
-		System.out.println(isFound(list, 15));
-		System.out.println(isFound(list, 90));
-		printList(deletNodeX(list, 3));
-		printList(deletNodeX(list, 33));
-	} 
-	
 	public static void printList( Node<Integer> list) {
 		Node<Integer> n=list;
 		while (n!= null) {
@@ -89,47 +79,68 @@ public class Main {
 	} 
 
 public static boolean ex5(Node <Integer> h, int x) {
-
 		Node <Integer> p = h;
-
 		while(p != null) {
-
 			if (p.getValue() == x) {
-
 				return true;
-
 			}
-
 			p = p.getNext();
-
 		}
-
 		return false;
-
 	}
 
 // סעיף 8 משתמשת בפעולה 5 כעזר
 
 	public static boolean ex8(Node <Integer> n, Node <Integer> x) {
-
 		if (n == null) {
-
 			return true;
-
 		}
-
 		if  (ex5(x,n.getValue()) == false) {
-
 			return false;
-
 		}
-
 		return ex8(n.getNext(),x);
-
 	}
+
+
+	public static void ex9(Node<Integer> L1, Node<Integer> L2) {
+		while (L1 != null) {
+			Node<Integer> p = L2; 
+			while (p != null) {
+				if (p.getValue() == L2.getValue())
+					System.out.println(p.getValue());
+				p = p.getNext();
+			}
+			L1 = L1.getNext();
+		}
+	}
+
+	
+	public static Node<Integer> ex10(Node<Integer> L1, Node<Integer> L2){
+		Node<Integer> head = new Node<Integer>(null); 
+		Node<Integer> current = head;
+		while (L1 != null) {
+			Node<Integer> p = L2; 
+			while (p != null) {
+				if (p.getValue().equals(L1.getValue())) {
+					Node<Integer> c = new Node<Integer>(p.getValue()); 
+					current.setNext(c);
+					current = c;
+				}
+				p = p.getNext();	
+			}
+			L1 = L1.getNext();
+		}
+		return head.getNext();
+	
 	
 	public static void main(String[] args) {
-		testBuildList(); 
-	}
+		int[] arr = {0,3,6,5,6,7,90};
+		int[] arr1 = {1,5,90,34,6};
 
+		Node<Integer> L1 = buildList(arr1); 		
+		Node<Integer> L2 = buildList(arr); 		
+
+		ex9(L1, L2);
+		System.out.println(ex10(L1, L2));
+	}
 }
