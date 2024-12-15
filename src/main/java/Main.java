@@ -131,6 +131,7 @@ public static boolean ex5(Node <Integer> h, int x) {
 			L1 = L1.getNext();
 		}
 		return head.getNext();
+	}
 	
 	
 	public static void main(String[] args) {
